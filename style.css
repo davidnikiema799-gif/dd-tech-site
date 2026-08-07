@@ -150,7 +150,35 @@ p{color:var(--muted);}
   content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--cyan);
 }
 .nav-cta{ display:flex; align-items:center; gap:14px; }
-.nav-toggle{ display:none; }
+
+.nav-toggle{
+  display:none;
+  width:40px; height:40px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fff;
+  align-items:center; justify-content:center;
+  cursor:pointer;
+  flex-shrink:0;
+}
+.nav-toggle span{
+  position:relative;
+  width:18px; height:2px;
+  background:var(--ink);
+  display:block;
+}
+.nav-toggle span::before, .nav-toggle span::after{
+  content:"";
+  position:absolute; left:0;
+  width:18px; height:2px;
+  background:var(--ink);
+  transition: transform .2s ease, opacity .2s ease;
+}
+.nav-toggle span::before{ top:-6px; }
+.nav-toggle span::after{ top:6px; }
+.nav-toggle[aria-expanded="true"] span{ background:transparent; }
+.nav-toggle[aria-expanded="true"] span::before{ transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span::after{ transform: translateY(-6px) rotate(-45deg); }
 
 /* ---------- Hero ---------- */
 .hero{
@@ -424,11 +452,40 @@ footer .foot-links a:hover{ color:#fff; }
   .grid-3{ grid-template-columns: 1fr 1fr; }
   .why-list{ grid-template-columns: repeat(3,1fr); }
   .contact-grid{ grid-template-columns:1fr; }
-  .nav-links{ display:none; }
+
+  .nav-toggle{ display:flex; order:3; }
+  .nav-cta .btn-primary span.btn-label{ display:none; }
+
+  .nav-links{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    position:absolute;
+    top:76px; left:0; right:0;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    max-height:0;
+    overflow:hidden;
+    transition: max-height .25s ease;
+  }
+  .nav-links.open{ max-height:280px; }
+  .nav-links a{
+    width:100%;
+    padding:16px 28px;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-links a.active::after{ display:none; }
+  .nav-links a.active{ background:var(--paper-2); }
 }
 @media (max-width: 640px){
   .grid-3, .grid-2{ grid-template-columns:1fr; }
   .why-list{ grid-template-columns: repeat(2,1fr); }
   .cta-band{ flex-direction:column; text-align:center; }
   footer .wrap{ flex-direction:column; text-align:center; }
+
+  .brand-text span{ display:none; }
+  .site-header .wrap{ gap:10px; }
+  .nav-cta .btn-primary{ padding:10px 14px; font-size:.8rem; }
 }
