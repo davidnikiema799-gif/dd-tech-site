@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dd-tech.bf/sitemap.xml
