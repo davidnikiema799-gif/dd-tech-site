@@ -513,11 +513,15 @@ form.contact-form{ display:flex; flex-direction:column; }
    ========================================================= */
 .article-hero{ padding:clamp(40px,5vw,64px) 0 0; }
 .article-hero h1{ font-size:clamp(1.9rem, 1.3rem + 2.6vw, 3rem); max-width:22ch; }
+.article-fil{ font-size:.86rem; color:var(--ink-faint); margin-bottom:18px; display:flex; gap:9px; flex-wrap:wrap; }
+.article-fil a{ color:var(--ink); font-weight:600; border-bottom:1.5px solid var(--ochre); }
+.article-fil a:hover{ color:var(--ochre); }
+.article-hero .wrap-narrow{ max-width:calc(68ch + 2 * var(--gut)); }
 .article-temps{ font-size:.88rem; color:var(--ink-faint); margin-top:18px; }
 .article-rule{ border:none; border-top:1.5px solid var(--ink); margin:28px 0 0; }
 .article-body{ max-width:68ch; margin:0 auto; padding:clamp(30px,4vw,46px) 0 clamp(40px,6vw,72px); }
 .article-body > p:first-child{ font-size:1.18rem; line-height:1.6; color:var(--ink-2); }
-.article-body h2{ margin:42px 0 14px; font-size:clamp(1.35rem,1.1rem + 1vw,1.75rem); max-width:26ch; }
+.article-body h2{ margin:42px 0 14px; font-size:clamp(1.35rem,1.1rem + 1vw,1.75rem); max-width:none; }
 .article-body h3{ margin:30px 0 10px; font-size:1.14rem; }
 .article-body p{ color:#36465B; font-size:1.04rem; line-height:1.75; margin-bottom:18px; max-width:none; }
 .article-body ul{ margin:0 0 22px; display:flex; flex-direction:column; gap:11px; }
