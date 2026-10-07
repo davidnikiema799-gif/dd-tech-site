@@ -5,7 +5,6 @@
    Fraunces (titres) · Public Sans (corps)
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap');
 
 :root{
   /* Papier */
@@ -337,6 +336,18 @@ table.reg tfoot{ opacity:0; animation:inscrire .42s ease-out .70s forwards; }
 .steps h4{ font-size:1.25rem; margin-bottom:9px; }
 .steps p{ font-size:.97rem; max-width:62ch; }
 
+/* Sur grand écran, les quatre étapes se lisent côte à côte, comme les colonnes d'un registre */
+@media (min-width:901px){
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--rule); }
+  .steps .step{
+    grid-template-columns:1fr; gap:16px; align-items:start;
+    padding:30px 26px 34px 0; border-bottom:none;
+  }
+  .steps .step + .step{ padding-left:26px; border-left:1px solid var(--rule); }
+  .steps h4{ font-size:1.15rem; }
+  .steps p{ font-size:.94rem; }
+}
+
 /* --- Réalisations --- */
 .works{ border-top:1.5px solid var(--ink); }
 .work{
@@ -348,7 +359,9 @@ table.reg tfoot{ opacity:0; animation:inscrire .42s ease-out .70s forwards; }
 .work .secteur{ font-size:.85rem; color:var(--ink-faint); margin-top:5px; }
 .work p{ font-size:.97rem; max-width:58ch; }
 .work .go{ font-weight:600; font-size:.92rem; color:var(--ink); border-bottom:1.5px solid var(--ochre); padding-bottom:2px; white-space:nowrap; }
+.work .go::after{ content:"\2192"; margin-left:.35em; display:inline-block; transition:transform .18s ease; }
 .work .go:hover{ color:var(--ochre); }
+.work:hover .go::after{ transform:translateX(4px); }
 
 /* --- Détail projet (page réalisations) --- */
 .project{
@@ -370,6 +383,21 @@ table.reg tfoot{ opacity:0; animation:inscrire .42s ease-out .70s forwards; }
 .project-facts div:last-child{ border-right:none; }
 .project-facts b{ display:block; font-family:var(--display); font-weight:600; font-size:1rem; color:var(--ink); }
 .project-facts span{ font-size:.82rem; color:var(--ink-faint); }
+/* Sur grand écran : le récit à gauche, ce que fait l'outil à droite (plus de grand vide) */
+@media (min-width:901px){
+  .project-body{
+    display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+    column-gap:clamp(30px,4vw,56px); align-items:start;
+  }
+  .project-body > p{ grid-column:1; }
+  .project-body > .checks{
+    grid-column:2; grid-row:1 / span 3; margin-top:0;
+    padding-left:clamp(22px,3vw,36px); border-left:1px solid var(--rule);
+  }
+  .project-body > .checks:only-child{ grid-column:1 / -1; grid-row:auto; padding-left:0; border-left:none;
+    display:grid; grid-template-columns:1fr 1fr; column-gap:40px; }
+  .project-body p:last-of-type{ margin-bottom:0; }
+}
 .checks{ margin-top:16px; display:flex; flex-direction:column; gap:9px; }
 .checks li{ font-size:.95rem; color:var(--ink-soft); display:flex; gap:11px; align-items:flex-start; }
 .checks li::before{ content:""; width:6px; height:6px; margin-top:9px; background:var(--ochre); flex-shrink:0; }
@@ -406,7 +434,10 @@ table.reg tfoot{ opacity:0; animation:inscrire .42s ease-out .70s forwards; }
   transition:background .16s ease;
 }
 .post:hover{ background:var(--paper-2); }
-.post h3{ font-size:1.3rem; margin-bottom:8px; max-width:30ch; }
+.band-paper .post:hover{ background:var(--paper-3); }
+.post h3{ font-size:1.3rem; margin-bottom:8px; max-width:44ch; transition:color .16s ease; }
+.post h3::after{ content:"\2192"; margin-left:.35em; color:var(--ochre); display:inline-block; transition:transform .18s ease; }
+.post:hover h3::after{ transform:translateX(4px); }
 .post p{ font-size:.97rem; max-width:62ch; }
 .post .temps{ font-size:.84rem; color:var(--ink-faint); margin-top:10px; }
 
@@ -539,6 +570,9 @@ footer{ background:var(--ink); color:#8A99AC; padding:clamp(44px,5vw,64px) 0 0; 
   transition:background .16s ease;
 }
 .wa-float:hover{ background:#126B3E; }
+/* Masqué tant que la bannière (qui a déjà ses boutons) est à l'écran */
+.wa-float{ transition:background .16s ease, opacity .25s ease, transform .25s ease; }
+.wa-float.wa-hidden{ opacity:0; transform:translateY(12px); pointer-events:none; }
 .wa-float svg{ width:21px; height:21px; flex-shrink:0; }
 
 /* =========================================================

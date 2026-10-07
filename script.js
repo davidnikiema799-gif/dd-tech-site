@@ -104,6 +104,19 @@
       });
     }
 
+    /* ---------- Bouton WhatsApp : discret tant que la bannière est visible ---------- */
+    var wa = document.querySelector('.wa-float');
+    var hero = document.querySelector('.hero');
+    if (wa && hero) {
+      var majWa = function () {
+        var bas = hero.getBoundingClientRect().bottom;
+        wa.classList.toggle('wa-hidden', bas > window.innerHeight * 0.35);
+      };
+      majWa();
+      window.addEventListener('scroll', majWa, { passive: true });
+      window.addEventListener('resize', majWa);
+    }
+
     /* ---------- Année courante ---------- */
     var year = new Date().getFullYear();
     document.querySelectorAll('.year').forEach(function (el) {
