@@ -12,100 +12,94 @@
   s'affiche quand on partage le site sur WhatsApp ou Facebook.
 
   1. Ouvrez ce fichier dans Chrome.
-  2. Appuyez sur F12 (outils développeur).
-  3. Appuyez sur Ctrl+Shift+P, tapez "screenshot",
-     puis choisissez "Capture node screenshot"
-     après avoir sélectionné le bloc .og dans l'onglet Elements.
-     (Ou plus simple : faites une capture d'écran de la carte,
-      puis recadrez-la exactement en 1200 x 630 pixels.)
-  4. Enregistrez le fichier sous le nom  og-image.png
+  2. Faites une capture d'écran de la carte ci-dessous.
+  3. Recadrez-la exactement en 1200 x 630 pixels.
+  4. Enregistrez-la sous le nom  og-image.png
      à la racine du site, à côté de index.html.
 
-  Une fois og-image.png en place, tout partage du lien affichera
-  une belle carte au lieu d'un lien nu.
+  Une fois og-image.png en place, tout partage du lien
+  affichera une carte au lieu d'un lien nu.
   ===========================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;}
+  *{ margin:0; padding:0; box-sizing:border-box; }
   body{
-    background:#c9d2e4; min-height:100vh;
+    background:#D5D2CA; min-height:100vh;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:20px; padding:30px; font-family:'Inter',sans-serif;
+    gap:22px; padding:30px; font-family:'Public Sans',sans-serif;
   }
-  .hint{font-size:14px;color:#3a4256;text-align:center;max-width:620px;line-height:1.6;}
+  .hint{ font-size:14px; color:#3A4656; text-align:center; max-width:620px; line-height:1.6; }
+  .hint strong{ color:#1B2B3F; }
+
   .og{
     width:1200px; height:630px; flex-shrink:0;
-    background:linear-gradient(150deg,#0D1B33 0%,#06101F 100%);
-    position:relative; overflow:hidden;
+    background:#F6F5F1; position:relative; overflow:hidden;
     display:flex; flex-direction:column; justify-content:center;
-    padding:0 90px; color:#fff;
+    padding:0 86px; color:#1B2B3F;
+    border:1px solid #D9D6CD;
   }
+  /* filet d'encre en haut, comme l'en-tête d'un registre */
   .og::before{
-    content:""; position:absolute; top:-260px; right:-160px;
-    width:760px; height:760px; border-radius:50%;
-    background:radial-gradient(circle,rgba(51,85,255,.55),transparent 66%);
+    content:""; position:absolute; top:0; left:0; right:0; height:14px; background:#1B2B3F;
   }
   .og::after{
-    content:""; position:absolute; bottom:-300px; left:-180px;
-    width:680px; height:680px; border-radius:50%;
-    background:radial-gradient(circle,rgba(22,213,205,.32),transparent 68%);
+    content:""; position:absolute; bottom:0; left:0; right:0; height:5px; background:#A9742A;
   }
-  .og > *{position:relative; z-index:1;}
-  .brand{display:flex; align-items:center; gap:18px; margin-bottom:44px;}
-  .mark{
-    width:76px; height:76px; border-radius:22px;
-    background:linear-gradient(135deg,#3355FF,#16D5CD);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Sora',sans-serif; font-weight:800; font-size:28px; color:#fff;
-    box-shadow:0 18px 40px -14px rgba(51,85,255,.9);
+
+  .marque{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:40px;
   }
-  .brand .name{font-family:'Sora',sans-serif; font-weight:800; font-size:34px; letter-spacing:-.02em;}
-  .brand .sub{font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.18em;
-              text-transform:uppercase; color:#8C9BC4; margin-top:4px;}
+  .marque .nom{
+    font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:30px;
+    letter-spacing:-.02em; color:#1B2B3F;
+  }
+  .marque .lieu{ font-size:16px; color:#8A94A3; font-weight:500; }
+
   h1{
-    font-family:'Sora',sans-serif; font-weight:800; font-size:62px;
-    line-height:1.1; letter-spacing:-.03em; max-width:900px;
+    font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:58px;
+    line-height:1.08; letter-spacing:-.025em; max-width:17ch; color:#1B2B3F;
   }
-  h1 .grad{
-    background:linear-gradient(100deg,#5B79FF,#16D5CD);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
+  .lead{ font-size:23px; color:#5A6A7D; margin-top:26px; max-width:46ch; line-height:1.5; }
+
+  .pied{
+    display:flex; gap:40px; margin-top:44px; padding-top:26px;
+    border-top:1px solid #D9D6CD; flex-wrap:wrap;
   }
-  .lead{font-size:24px; color:#AEBBDB; margin-top:26px; max-width:820px; line-height:1.5;}
-  .flags{display:flex; gap:30px; margin-top:46px; flex-wrap:wrap;}
-  .flag{display:flex; align-items:center; gap:11px; font-size:19px; color:#DCE3FF; font-weight:500;}
-  .flag i{width:11px; height:11px; border-radius:50%; background:#16D5CD; display:block;}
-  .corner{
-    position:absolute; right:78px; bottom:64px; z-index:1;
-    font-family:'IBM Plex Mono',monospace; font-size:17px; color:#8C9BC4; letter-spacing:.1em;
+  .item b{
+    display:block; font-family:'Fraunces',Georgia,serif; font-weight:600;
+    font-size:19px; color:#1B2B3F;
+  }
+  .item span{ font-size:15px; color:#8A94A3; }
+
+  .tel{
+    position:absolute; right:86px; bottom:60px;
+    font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:22px; color:#1B2B3F;
   }
 </style>
 </head>
 <body>
 
-<p class="hint">Gabarit de l'image de partage — capturez uniquement la carte ci-dessous (1200 × 630 px)<br>et enregistrez-la sous <strong>og-image.png</strong> à la racine du site.</p>
+<p class="hint">Gabarit de l'image de partage. Capturez uniquement la carte ci-dessous (1200 × 630 px)<br>et enregistrez-la sous <strong>og-image.png</strong> à la racine du site.</p>
 
 <div class="og">
-  <div class="brand">
-    <div class="mark">DD</div>
-    <div>
-      <div class="name">DD-TECH</div>
-      <div class="sub">Solutions numériques · Burkina Faso</div>
-    </div>
+  <div class="marque">
+    <span class="nom">DD-TECH</span>
+    <span class="lieu">Ouagadougou, Burkina Faso</span>
   </div>
 
-  <h1>Vos idées. Notre expertise.<br><span class="grad">Votre solution numérique.</span></h1>
-  <p class="lead">Applications et plateformes de gestion sur mesure pour les écoles, commerces et entreprises du Burkina Faso.</p>
+  <h1>Vos cahiers, vos classeurs et vos fichiers Excel, réunis dans un seul outil.</h1>
+  <p class="lead">Logiciels de gestion sur mesure pour les écoles, commerces et structures du Burkina Faso.</p>
 
-  <div class="flags">
-    <div class="flag"><i></i> Devis gratuit sous 48h</div>
-    <div class="flag"><i></i> Formation incluse</div>
-    <div class="flag"><i></i> Support après livraison</div>
+  <div class="pied">
+    <div class="item"><b>Devis gratuit sous 48 h</b><span>Prix ferme et périmètre écrit</span></div>
+    <div class="item"><b>Formation incluse</b><span>Sur place, jusqu'à l'autonomie</span></div>
+    <div class="item"><b>Support après livraison</b><span>Nous restons joignables</span></div>
   </div>
 
-  <div class="corner">+226 67 54 02 04</div>
+  <div class="tel">+226 67 54 02 04</div>
 </div>
 
 </body>
